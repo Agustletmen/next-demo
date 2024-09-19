@@ -1,10 +1,25 @@
 App Router https://www.cnblogs.com/eddyz/p/17621208.html
 Pages Router
 
+```tsx
+import Link from 'next/link'
+
+export default function Page() {
+  return <Link href="/dashboard">Dashboard</Link>
+}
+```
 
 
+layout
 
 
+客户端组件 CSR
+服务端组件 SSR
+
+
+ui
+https://ui.shadcn.com/docs
+tailwind css
 
 
 
