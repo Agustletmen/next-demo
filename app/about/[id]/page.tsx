@@ -2,7 +2,7 @@
 
 import { useParams } from 'next/navigation';
 
-export default function params() {
+export default function Params() {
     const { id } = useParams();
     return <div className=''>id：{id}</div>
 }
