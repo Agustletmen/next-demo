@@ -55,7 +55,7 @@ const components: { title: string; href: string; description: string }[] = [
   },
 ]
 
-export function NavigationMenuDemo() {
+function NavigationMenuDemo() {
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -113,9 +113,9 @@ export function NavigationMenuDemo() {
 
 
         <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+          <Link href="/rate" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Documentation
+              Currency Rate
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

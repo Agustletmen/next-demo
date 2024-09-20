@@ -1,36 +1,60 @@
-App Router https://www.cnblogs.com/eddyz/p/17621208.html
-Pages Router
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableFooter,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
 
-```tsx
-import Link from 'next/link'
+const invoices = [
+    {
+        invoice: "INV001",
+        paymentStatus: "Paid",
+        totalAmount: "$250.00",
+        paymentMethod: "Credit Card",
+    },
+    {
+        invoice: "INV002",
+        paymentStatus: "Pending",
+        totalAmount: "$150.00",
+        paymentMethod: "PayPal",
+    },
+    {
+        invoice: "INV003",
+        paymentStatus: "Unpaid",
+        totalAmount: "$350.00",
+        paymentMethod: "Bank Transfer",
+    },
+    {
+        invoice: "INV004",
+        paymentStatus: "Paid",
+        totalAmount: "$450.00",
+        paymentMethod: "Credit Card",
+    },
+    {
+        invoice: "INV005",
+        paymentStatus: "Paid",
+        totalAmount: "$550.00",
+        paymentMethod: "PayPal",
+    },
+    {
+        invoice: "INV006",
+        paymentStatus: "Pending",
+        totalAmount: "$200.00",
+        paymentMethod: "Bank Transfer",
+    },
+    {
+        invoice: "INV007",
+        paymentStatus: "Unpaid",
+        totalAmount: "$300.00",
+        paymentMethod: "Credit Card",
+    },
+]
 
-export default function Page() {
-  return <Link href="/dashboard">Dashboard</Link>
-}
-```
-
-
-layout
-
-
-客户端组件 CSR
-服务端组件 SSR
-
-ui
-https://ui.shadcn.com/docs
-tailwind css
-
-
-
-
-
-[ExchangeRate-API](https://app.exchangerate-api.com/dashboard)
-
-
-https://v6.exchangerate-api.com/v6/c48b0431bf79f0a21c9978e8/latest/USD
-
-```json
-{
+const data = {
     "result": "success",
     "documentation": "https://www.exchangerate-api.com/docs",
     "terms_of_use": "https://www.exchangerate-api.com/terms",
@@ -204,43 +228,72 @@ https://v6.exchangerate-api.com/v6/c48b0431bf79f0a21c9978e8/latest/USD
         "ZWL": 13.9711
     }
 }
-```
+
+function TableDemo() {
+    return (
+        <Table>
+            {/* 标题 */}
+            <TableCaption>A list of {data.base_code} to other Currency</TableCaption>
+
+            {/* 表头 */}
+            <TableHeader>
+                <TableRow>
+                    {/* <TableHead className="w-[100px]">Invoice</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Method</TableHead>
+                    <TableHead className="text-right">Amount</TableHead> */}
+
+                    <TableHead>Currency Code</TableHead>
+                    <TableHead>Currnecy Name</TableHead>
+                    <TableHead>Country Name</TableHead>
+                    <TableHead>Currency Rate</TableHead>
+                </TableRow>
+            </TableHeader>
+
+            {/* 数据 */}
+            <TableBody>
+                {/* {invoices.map((invoice) => (
+                    <TableRow key={invoice.invoice}>
+                        <TableCell className="font-medium">{invoice.invoice}</TableCell>
+                        <TableCell>{invoice.paymentStatus}</TableCell>
+                        <TableCell>{invoice.paymentMethod}</TableCell>
+                        <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+                    </TableRow>
+                ))} */}
+
+                {Object.entries(data.conversion_rates).map(([code, rate]) => (
+                    <TableRow key={code}>
+                        <TableCell className="font-medium">{code}</TableCell>
+                        <TableCell>{code}</TableCell>
+                        <TableCell>{code}</TableCell>
+                        <TableCell >{rate}</TableCell>
+                    </TableRow>
+                ))}
+
+            </TableBody>
+
+            {/* 表脚 */}
+            <TableFooter>
+                <TableRow>
+                    {/* <TableCell colSpan={3}>Total</TableCell>
+                    <TableCell className="text-right">$2,500.00</TableCell> */}
+                    <TableCell >time_last_update_utc</TableCell>
+                    <TableCell >{data.time_last_update_utc}</TableCell>
+                    <TableCell >time_next_update_utc</TableCell>
+                    <TableCell >{data.time_next_update_utc}</TableCell>
+                </TableRow>
+            </TableFooter>
+        </Table>
+    )
+}
 
 
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+export default function name() {
+    return (
+        <>
+            <div className="container mx-auto">
+                <TableDemo />
+            </div>
+        </>
+    )
+}
